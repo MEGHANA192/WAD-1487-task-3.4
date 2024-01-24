@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Form</title>
+</head>
+<body>
+    <h2>Registration Form</h2>
+
+    <form>
+        <label for="name">Name:</label>
+        <input type="text" id="name" required>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" required>
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" required>
+
+        <label for="phone">Phone:</label>
+        <input type="tel" id="phone" required>
+
+        <label for="dob">Date of Birth:</label>
+        <input type="date" id="dob" required>
+
+        <button type="button" onclick="validateForm()">Submit</button>
+    </form>
+
+    <script>
+        function validateForm() {
+            const nameInput = document.getElementById('name').value;
+            const emailInput = document.getElementById('email').value;
+            const passwordInput = document.getElementById('password').value;
+            const phoneInput = document.getElementById('phone').value;
+
+            if (nameInput.length < 3) {
+                alert('Name should be at least 3 characters.');
+            } else if (!isValidEmail(emailInput)) {
+                alert('Invalid email format.');
+            } else if (passwordInput.length < 8) {
+                alert('Password should be at least 8 characters.');
+            } else if (!containsUppercase(passwordInput) || !containsLowercase(passwordInput) || !containsDigit(passwordInput)) {
+                alert('Password should contain at least one uppercase letter, one lowercase letter, and one digit.');
+            } else if (phoneInput.length !== 10 || isNaN(phoneInput)) {
+                alert('Phone number should be numeric and have 10 digits.');
+            } else {
+                alert('Form submitted successfully!');
+            }
+        }
+
+        function isValidEmail(email) {
+           
+            return email.includes('@') && email.includes('.');
+        }
+
+        function containsUppercase(str) {
+            return /[A-Z]/.test(str);
+        }
+
+        function containsLowercase(str) {
+            return /[a-z]/.test(str);
+        }
+
+        function containsDigit(str) {
+            return /\d/.test(str);
+        }
+    </script>
+</body>
+</html>
